@@ -17,10 +17,10 @@
         </insert>
     </changeSet>
 
-    <changeSet id="2023-11-02-insert_TEACHER_role" author="Samadov Nicat">
+    <changeSet id="2023-11-02-insert_AUTHOR_role" author="Samadov Nicat">
         <insert tableName="roles">
             <column name="id" value="e86fc31ff87042ca8f2edb889a79997e"/>
-            <column name="name" value="TEACHER"/>
+            <column name="name" value="AUTHOR"/>
         </insert>
     </changeSet>
 </databaseChangeLog>
