@@ -6,7 +6,7 @@ import lombok.Getter;
 public enum Profession {
     ADMIN("ADMIN"),
     STUDENT("STUDENT"),
-    TEACHER("TEACHER");
+    AUTHOR("AUTHOR");
 
     private final String label;
 
