@@ -19,8 +19,8 @@
             <column name="id" type="char(32)">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
-            <column name="email" type="varchar(256)"/>
-            <column name="password" type="varchar(256)"/>
+            <column name="email" type="varchar(100)"/>
+            <column name="password" type="varchar(100)"/>
             <column name="role_id" type="char(32)"/>
         </createTable>
         <addForeignKeyConstraint baseTableName="accounts" baseColumnNames="role_id" constraintName="account_role_fk" referencedTableName="roles"
@@ -32,7 +32,7 @@
             <column name="id" type="char(32)">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
-            <column name="name" type="varchar(256)"/>
+            <column name="name" type="varchar(50)"/>
             <column name="age" type="int"/>
             <column name="account_id" type="char(32)"/>
         </createTable>
@@ -45,19 +45,21 @@
             <column name="id" type="char(32)">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
-            <column name="name" type="varchar(256)"/>
+            <column name="name" type="varchar(50)"/>
             <column name="age" type="int"/>
             <column name="account_id" type="char(32)"/>
         </createTable>
         <addForeignKeyConstraint baseTableName="authors" baseColumnNames="account_id" constraintName="author_account_fk" referencedTableName="accounts"
                                  referencedColumnNames="id"/>
     </changeSet>
-
-
-
-
-
-
+    <changeSet id="2023-11-02-create_books_table" author="Samadov Nicat">
+        <createTable tableName="books">
+            <column name="id" type="char(32)">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="varchar(100)"/>
+        </createTable>
+    </changeSet>
 
 
 </databaseChangeLog>

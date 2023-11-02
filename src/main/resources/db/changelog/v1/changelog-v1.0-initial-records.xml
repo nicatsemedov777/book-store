@@ -4,7 +4,23 @@
                    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
                    https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
 
-    <changeSet id="0" author="admin">
+    <changeSet id="2023-11-02-insert_ADMIN_role" author="Samadov Nicat">
+        <insert tableName="roles">
+            <column name="id" value="6cd146d118af4126bf1b02730813b4a3"/>
+            <column name="name" value="ADMIN"/>
+        </insert>
+    </changeSet>
+    <changeSet id="2023-11-02-insert_STUDNET_role" author="Samadov Nicat">
+        <insert tableName="roles">
+            <column name="id" value="c500da5ec72d4750a77dd66da908577a"/>
+            <column name="name" value="STUDENT"/>
+        </insert>
+    </changeSet>
 
+    <changeSet id="2023-11-02-insert_TEACHER_role" author="Samadov Nicat">
+        <insert tableName="roles">
+            <column name="id" value="e86fc31ff87042ca8f2edb889a79997e"/>
+            <column name="name" value="TEACHER"/>
+        </insert>
     </changeSet>
 </databaseChangeLog>

@@ -4,9 +4,9 @@ import lombok.Getter;
 
 @Getter
 public enum Profession {
-    ADMIN("Admin"),
-    STUDENT("Student"),
-    TEACHER("Teacher");
+    ADMIN("ADMIN"),
+    STUDENT("STUDENT"),
+    TEACHER("TEACHER");
 
     private final String label;
 
