@@ -5,4 +5,59 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
 
+    <changeSet id="2023-11-02-create_roles_table" author="Samadov Nicat">
+        <createTable tableName="roles">
+            <column name="id" type="char(32)">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="varchar(50)"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="2023-11-02-create_accounts_table" author="Samadov Nicat">
+        <createTable tableName="accounts">
+            <column name="id" type="char(32)">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="email" type="varchar(256)"/>
+            <column name="password" type="varchar(256)"/>
+            <column name="role_id" type="char(32)"/>
+        </createTable>
+        <addForeignKeyConstraint baseTableName="accounts" baseColumnNames="role_id" constraintName="account_role_fk" referencedTableName="roles"
+                                 referencedColumnNames="id"/>
+    </changeSet>
+
+    <changeSet id="2023-11-02-create_students_table" author="Samadov Nicat">
+        <createTable tableName="students">
+            <column name="id" type="char(32)">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="varchar(256)"/>
+            <column name="age" type="int"/>
+            <column name="account_id" type="char(32)"/>
+        </createTable>
+        <addForeignKeyConstraint baseTableName="students" baseColumnNames="account_id" constraintName="student_account_fk" referencedTableName="accounts"
+                                 referencedColumnNames="id"/>
+    </changeSet>
+
+    <changeSet id="2023-11-02-create_authors_table" author="Samadov Nicat">
+        <createTable tableName="authors">
+            <column name="id" type="char(32)">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="varchar(256)"/>
+            <column name="age" type="int"/>
+            <column name="account_id" type="char(32)"/>
+        </createTable>
+        <addForeignKeyConstraint baseTableName="authors" baseColumnNames="account_id" constraintName="author_account_fk" referencedTableName="accounts"
+                                 referencedColumnNames="id"/>
+    </changeSet>
+
+
+
+
+
+
+
+
 </databaseChangeLog>
