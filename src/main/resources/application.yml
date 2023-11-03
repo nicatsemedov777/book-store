@@ -33,6 +33,7 @@ security:
       /v2/api-docs,
       /api/v1/public/**,
       /ws-registration/**,
-      /api/v1/users/signin,
-      /api/v1/users/signup
+      api/v1/public/accounts/**
 
+  jwt:
+    secret-key: ${BOOK_STORE_JWT_SECRET_KEY}
