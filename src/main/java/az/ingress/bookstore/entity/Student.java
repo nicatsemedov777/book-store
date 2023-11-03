@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -27,5 +28,5 @@ public class Student {
     private Account account;
 
     @OneToMany
-    private List<Book> books;
+    private List<Book> books = new ArrayList<>();
 }

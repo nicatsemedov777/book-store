@@ -21,6 +21,7 @@
             </column>
             <column name="email" type="varchar(100)"/>
             <column name="password" type="varchar(100)"/>
+            <column name="create_date" type="timestamp without time zone"/>
             <column name="role_id" type="char(32)"/>
         </createTable>
         <addForeignKeyConstraint baseTableName="accounts" baseColumnNames="role_id" constraintName="account_role_fk" referencedTableName="roles"
@@ -58,8 +59,10 @@
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="name" type="varchar(100)"/>
+            <column name="author_id" type="char(32)"/>
         </createTable>
+        <addForeignKeyConstraint baseTableName="books" baseColumnNames="author_id" constraintName="book_author_fk" referencedTableName="authors"
+                                 referencedColumnNames="id"/>
     </changeSet>
-
 
 </databaseChangeLog>
