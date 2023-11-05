@@ -27,6 +27,11 @@ public class Student {
     @OneToOne
     private Account account;
 
-    @OneToMany
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "student_books",
+            joinColumns ={@JoinColumn(name = "student_id", referencedColumnName = "id")},
+            inverseJoinColumns ={@JoinColumn(name = "book_id", referencedColumnName = "id")}
+    )
+
     private List<Book> books = new ArrayList<>();
 }
