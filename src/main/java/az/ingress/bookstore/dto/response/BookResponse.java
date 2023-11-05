@@ -11,6 +11,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Builder
 public class BookResponse {
+    public String bookId;
     public String bookName;
     public String authorId;
 }

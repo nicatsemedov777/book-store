@@ -17,8 +17,8 @@ public interface StudentBookEnrollmentRepository extends JpaRepository<StudentBo
     @Query("SELECT s from Student s JOIN StudentBookEnrollment sbe on sbe.student.id = s.id  WHERE sbe.book.id = ?1")
     List<Student> findAllStudentByBookId(String bookId);
 
-    @Query("Select b from Book b join  StudentBookEnrollment sbe on sbe.book.id = b.id where sbe.student.id = ?1")
-    List<Book> findAllBookByStudentId(String studentId);
+    @Query("Select sbe.book from StudentBookEnrollment sbe where  sbe.student.account.id = ?1")
+    List<Book> findAllBooksByAccountId(String accountId);
     @Transactional
     @Modifying
     @Query("delete from StudentBookEnrollment s where s.book.id = :bookId")

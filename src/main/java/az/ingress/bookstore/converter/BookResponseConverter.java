@@ -11,6 +11,7 @@ public class BookResponseConverter implements Function<Book, BookResponse> {
     @Override
     public BookResponse apply(Book book) {
         return BookResponse.builder()
+                .bookId(book.getId())
                 .bookName(book.getName())
                 .authorId(book.getAuthor().getId())
                 .build();

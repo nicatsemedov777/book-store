@@ -42,7 +42,7 @@ public class StudentServiceImpl implements StudentService {
                 -> new ResourceNotFoundException("Student not found with this id:" + principal.getName()));
 
         saveStudentBookEnrollment(book, student);
-        return BuildBookResponse(book);
+        return bookResponseConverter.apply(book);
     }
 
     private void saveStudentBookEnrollment(Book book, Student student) {
@@ -54,21 +54,11 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public List<BookResponse> getAllBooksByStudentId(Principal principal) {
-        Student student = studentRepository.findByAccountId(principal.getName()).orElseThrow(() ->
-                new ResourceNotFoundException("Student not found with this id " + principal.getName()));
-        return enrollmentRepository.findAllBookByStudentId(student.getId())
+        return enrollmentRepository.findAllBooksByAccountId(principal.getName())
                 .stream()
                 .map(bookResponseConverter)
-                .toList();
+                .collect(Collectors.toList());
     }
-
-    private static BookResponse BuildBookResponse(Book book) {
-        return BookResponse.builder()
-                .bookName(book.getName())
-                .authorId(book.getAuthor().getId())
-                .build();
-    }
-
     private static Student buildStudent(AccountSignUpRequest accountSignUpRequest, Account account) {
         return Student.builder()
                 .name(accountSignUpRequest.getName())
