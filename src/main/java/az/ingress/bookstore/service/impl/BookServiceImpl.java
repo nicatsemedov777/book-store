@@ -8,8 +8,11 @@ import az.ingress.bookstore.entity.Account;
 import az.ingress.bookstore.entity.Book;
 import az.ingress.bookstore.error.exception.ResourceNotFoundException;
 import az.ingress.bookstore.repository.*;
+import az.ingress.bookstore.repository.projection.StudentEmailProjection;
 import az.ingress.bookstore.service.BookService;
+import az.ingress.bookstore.service.MailService;
 import lombok.RequiredArgsConstructor;
+import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
@@ -28,6 +31,7 @@ public class BookServiceImpl implements BookService {
     private final StudentBookEnrollmentRepository enrollmentRepository;
     private final StudentResponseConverter studentResponseConverter;
     private final BookResponseConverter bookResponseConverter;
+    private final MailService mailService;
 
     @Override
     public HttpStatus createBook(BookCreateRequest bookCreateRequest, Principal principal) {
@@ -38,7 +42,24 @@ public class BookServiceImpl implements BookService {
                 .author(author)
                 .build();
         bookRepository.save(book);
+
+        var studentEmails = enrollmentRepository.getStudentByAuthorId(author.getId());
+
+        if (CollectionUtils.isNotEmpty(studentEmails)) {
+            var studentEmailArray = convertListToArray(studentEmails);
+            mailService.sendNewBookNotification(studentEmailArray,
+                    String.format("Author %s published new book: %s.", author.getName(), book.getName()));
+        }
+
         return HttpStatus.OK;
+    }
+
+    private String[] convertListToArray(List<StudentEmailProjection> studentEmails) {
+        String[] arr = new String[studentEmails.size()];
+        for (int i = 0; i < studentEmails.size(); i++) {
+            arr[i] = studentEmails.get(i).getEmail();
+        }
+        return arr;
     }
 
     @Override
