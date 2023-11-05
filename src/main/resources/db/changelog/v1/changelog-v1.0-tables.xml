@@ -65,4 +65,19 @@
                                  referencedColumnNames="id"/>
     </changeSet>
 
+    <changeSet id="2023-11-03-create_student_books_table" author="Samadov Nicat">
+        <createTable tableName="student_books">
+            <column name="id" type="char(32)">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="student_id" type="char(32)"/>
+            <column name="book_id" type="char(32)"/>
+        </createTable>
+        <addForeignKeyConstraint baseTableName="student_books" baseColumnNames="student_id" constraintName="student_st_book_fk" referencedTableName="students"
+                                 referencedColumnNames="id"/>
+        <addForeignKeyConstraint baseTableName="student_books" baseColumnNames="book_id" constraintName="book_st_book_fk" referencedTableName="books"
+                                 referencedColumnNames="id"/>
+    </changeSet>
+
+
 </databaseChangeLog>

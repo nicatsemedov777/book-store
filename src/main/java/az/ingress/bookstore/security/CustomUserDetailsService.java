@@ -22,6 +22,6 @@ public class CustomUserDetailsService implements UserDetailsService {
     public UserDetails loadUserByUsername(String id) throws UsernameNotFoundException {
         Account account = accountRepository.findById(id)
                 .orElseThrow(()->new AuthenticationException("Bad credentials"));
-        return  new User(account.getId(), "", List.of(new SimpleGrantedAuthority(account.getRole().getName())));
+        return  new User(account.getId().toString(), "", List.of(new SimpleGrantedAuthority(account.getRole().getName())));
     }
 }
