@@ -16,7 +16,17 @@ spring:
     default-schema: ${BOOK_STORE_DB_SCHEMA}
     liquibase-schema: ${BOOK_STORE_DB_SCHEMA}
     enabled: true
-
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: smdovn42@gmail.com
+    password: lgrvgizrhsoauhbl
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
 security:
   auth:
     whitelist: >

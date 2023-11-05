@@ -3,10 +3,12 @@ package az.ingress.bookstore.repository;
 import az.ingress.bookstore.entity.Book;
 import az.ingress.bookstore.entity.Student;
 import az.ingress.bookstore.entity.StudentBookEnrollment;
+import az.ingress.bookstore.repository.projection.StudentEmailProjection;
 import org.springframework.data.domain.Page;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.expression.spel.ast.Projection;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -24,4 +26,7 @@ public interface StudentBookEnrollmentRepository extends JpaRepository<StudentBo
     @Modifying
     @Query("delete from StudentBookEnrollment s where s.book.id = :bookId")
     void deleteByBookId(String bookId);
+
+    @Query("select sbe.student.account.email as email from StudentBookEnrollment sbe where sbe.book.author.id = ?1")
+    List<StudentEmailProjection> getStudentByAuthorId(String authorId);
 }
