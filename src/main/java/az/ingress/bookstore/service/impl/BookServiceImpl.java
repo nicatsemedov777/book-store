@@ -1,13 +1,15 @@
 package az.ingress.bookstore.service.impl;
 
-import az.ingress.bookstore.converter.BookResponseConverter;
 import az.ingress.bookstore.converter.StudentResponseConverter;
 import az.ingress.bookstore.dto.request.BookCreateRequest;
 import az.ingress.bookstore.dto.response.StudentResponse;
 import az.ingress.bookstore.entity.Account;
 import az.ingress.bookstore.entity.Book;
 import az.ingress.bookstore.error.exception.ResourceNotFoundException;
-import az.ingress.bookstore.repository.*;
+import az.ingress.bookstore.repository.AccountRepository;
+import az.ingress.bookstore.repository.AuthorRepository;
+import az.ingress.bookstore.repository.BookRepository;
+import az.ingress.bookstore.repository.StudentBookEnrollmentRepository;
 import az.ingress.bookstore.repository.projection.StudentEmailProjection;
 import az.ingress.bookstore.service.BookService;
 import az.ingress.bookstore.service.MailService;
@@ -27,10 +29,8 @@ public class BookServiceImpl implements BookService {
     private final BookRepository bookRepository;
     private final AuthorRepository authorRepository;
     private final AccountRepository accountRepository;
-    private final StudentRepository studentRepository;
     private final StudentBookEnrollmentRepository enrollmentRepository;
     private final StudentResponseConverter studentResponseConverter;
-    private final BookResponseConverter bookResponseConverter;
     private final MailService mailService;
 
     @Override

@@ -11,12 +11,11 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface BookRepository extends JpaRepository<Book,String> {
+public interface BookRepository extends JpaRepository<Book, String> {
     @Transactional
     @Modifying
     @Query(value = "DELETE from books b where b.id = ?1 AND b.author_id = ?2", nativeQuery = true)
     void deleteByIdAndAuthorId(String id, String authorId);
-
 
     @Query("SELECT b from Book b where b.id = :bookId")
     Optional<List<Book>> findAllById(String bookId);

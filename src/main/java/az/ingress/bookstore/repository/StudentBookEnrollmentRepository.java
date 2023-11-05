@@ -4,16 +4,13 @@ import az.ingress.bookstore.entity.Book;
 import az.ingress.bookstore.entity.Student;
 import az.ingress.bookstore.entity.StudentBookEnrollment;
 import az.ingress.bookstore.repository.projection.StudentEmailProjection;
-import org.springframework.data.domain.Page;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.expression.spel.ast.Projection;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Optional;
 
 @Repository
 public interface StudentBookEnrollmentRepository extends JpaRepository<StudentBookEnrollment,String> {
