@@ -25,6 +25,7 @@ public class Student {
     private Integer age;
 
     @OneToOne
+    @JoinColumn(name = "account_id")
     private Account account;
 
     @ManyToMany(fetch = FetchType.EAGER)

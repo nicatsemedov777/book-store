@@ -25,6 +25,7 @@ public class Author {
     private Integer age;
 
     @OneToOne
+    @JoinColumn(name = "account_id")
     private Account account;
 
     @OneToMany

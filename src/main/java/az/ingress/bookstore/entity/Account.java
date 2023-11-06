@@ -26,6 +26,7 @@ public class Account {
     private String password;
 
     @ManyToOne
+    @JoinColumn(name = "role_id")
     private Role role;
 
     @Column(name = "create_date")
