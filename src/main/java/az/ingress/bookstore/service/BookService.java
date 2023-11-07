@@ -12,8 +12,11 @@ import java.security.Principal;
 import java.util.List;
 
 public interface BookService {
-    HttpStatus createBook(BookCreateRequest bookCreateRequest, Principal principal);
+    BookResponse createBook(BookCreateRequest bookCreateRequest, Principal principal);
 
     List<StudentResponse> getReadersByBookId(String bookId);
 
+    List<BookResponse> getAllBooks();
+
+    void deleteBook(String bookId, Principal principal);
 }
