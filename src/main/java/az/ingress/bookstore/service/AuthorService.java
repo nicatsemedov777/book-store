@@ -11,6 +11,4 @@ import java.util.List;
 public interface AuthorService {
     void addAuthor(AccountSignUpRequest accountSignUpRequest, Account account);
     List<BookResponse> getBooks(Principal principal);
-
-    void deleteBook(String bookId,Principal principal);
 }

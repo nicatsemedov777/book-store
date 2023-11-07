@@ -46,14 +46,6 @@ public class AuthorServiceImpl implements AuthorService {
                 .collect(Collectors.toList());
     }
 
-    @Override
-    public void deleteBook(String bookId, Principal principal) {
-        Author author = authorRepository.findByAccountId(principal.getName()).orElseThrow(ResourceNotFoundException::new);
-        enrollmentRepository.deleteByBookId(bookId);
-        bookRepository.deleteByIdAndAuthorId(bookId, author.getId());
-
-    }
-
     private static Author buildAuthor(AccountSignUpRequest accountSignUpRequest, Account account) {
         return Author.builder()
                 .name(accountSignUpRequest.getName())
